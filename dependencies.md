@@ -1,5 +1,5 @@
 # Google Apps Script Project: bmCachePoint
-This repo (bmCachePoint) was automatically updated on 5/23/2022, 2:43:00 PM by GasGit
+This repo (bmCachePoint) was automatically updated on 5/27/2022, 2:53:26 PM by GasGit
 
 For more information on gasgit, see the [desktop liberation site](https://ramblings.mcpher.com/drive-sdk-and-github/migrategasgit/ "desktop liberation")
 
@@ -16,7 +16,6 @@ The shared link for [bmCachePoint is here](https://script.google.com/d/1GOjfvSZL
 *name*|*type*
 --- | --- 
 appsscript| json
-Code| server_js
 Compress| server_js
 Cacher| server_js
 ### Directly referenced libraries
