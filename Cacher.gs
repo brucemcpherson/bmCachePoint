@@ -6,11 +6,11 @@
 
 /**
  * typedef CacherOptions
- * @property {CacheService} [cachePoint=null] the cacheservice to use - if null no cachng will be done, but all methods will still work
- * @property {number} [expiry = 60*60] default expiry in seconds
- * @property  {string} [prefix='bmCachePoint] can be used to change key generation algo to partition cache entries
- * @property {boolean} stale whether to use stale cache processing
- * @property {string} staleKey key to use to get stale value
+ * @property {CacheService} [cachePoint=null] - the cacheservice to use - if null no caching will be done, but all methods will still work
+ * @property {number} [expiry = 60*60] - default expiry in seconds
+ * @property  {string} [prefix='bmCachePoint] - can be used to change key generation algo to partition cache entries
+ * @property {boolean} [stale=false] - whether to use stale cache processing
+ * @property {string} [staleKey='stale'] - key to use to get stale value
  * @return {_Cacher}
  */
 class _Cacher {
@@ -32,9 +32,9 @@ class _Cacher {
    * return {string}
    */
   digester(...args) {
-    // conver args to an array and digest them
+    // convert args to an array and digest them
     const t = args.map(function (d) {
-      if(typeof d === typeof undefined) throw new Error('digester key component cant be undefined')
+      if(typeof d === typeof undefined) throw new Error("digester key component can't be undefined")
       return (Object(d) === d) ? JSON.stringify(d) : d.toString();
     }).join("-")
     const s = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_1, t, Utilities.Charset.UTF_8)
@@ -43,7 +43,7 @@ class _Cacher {
 
   /**
    * make a digest to key on
-   * @param {string} key the key to identify the data being cached
+   * @param {string} key - the key to identify the data being cached
    * @param {*} [options=''] any additional options to add to the key
    * @return {string} the key
    */ 
@@ -61,8 +61,9 @@ class _Cacher {
   get staler () {
     return this.staleKey + '_' + this.prefix
   }
+
   /** 
-   * if there's a stalekey its value will be added to the prefix
+   * if there's a stalekey, its value will be added to the prefix
    * @return {string}
    * */ 
   staleValue () {
@@ -80,11 +81,11 @@ class _Cacher {
 
   /**
    * get item fom cache
-   * @param {string} key the key to identify the data being cached 
-   * @param {*} [options] any additional options to add to the key
+   * @param {string} key - the key to identify the data being cached 
+   * @param {*} [options] - any additional options to add to the key
    * @return {string || null} value from cache
    */
-  get(key, options ) {
+  get(key, options) {
     // we can't cache this
     if (!this.cacheable) return null
 
@@ -119,11 +120,11 @@ class _Cacher {
 
   /**
    * set item to cache
-   * @param {string} key the key to identify the data being cached 
+   * @param {string} key - the key to identify the data being cached 
    * @param {string} data
    * @param {object} [params] 
-   * @param {*} [params.options] any extra stuff to add to the key key
-   * @param {expiry} [params.expiry] expiry in seconds to override the default cacher settings
+   * @param {*} [params.options] - any extra stuff to add to the key key
+   * @param {expiry} [params.expiry] - expiry in seconds to override the default cacher settings
    * @return {string || null} value from cache
    */
   set(key, data, {
